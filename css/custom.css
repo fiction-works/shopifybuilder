@@ -3,6 +3,10 @@ html {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+	background-image: url(../images/background.jpg);
+	background-position: right;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 
 body {
@@ -129,7 +133,6 @@ a {
 	left: 50%;
 	transform: translateX(-50%);
 	margin-bottom: 8px;
-	display: none;
 }
 
 .twitterID {
@@ -139,7 +142,6 @@ a {
 	font-size: 1.2em;
 	width: 100%;
 	text-align: center;
-	margin-top: 32px;
 	margin-bottom: 8px;
 }
 
