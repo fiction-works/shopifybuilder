@@ -13,10 +13,10 @@ $(document).ready(function () {
 				}
 			});
 			masonry();
-			linkify();
+			linky();
 		});
 	}
-
+	//Organises the posts into the masonry grid
 	function masonry() {
 		var $grid = $('.grid');
 		$grid.imagesLoaded(function () {
@@ -33,10 +33,12 @@ $(document).ready(function () {
 			}).animate({
 				opacity: 1
 			}, 500);
+			//Repositions the window for when the user loads more
 			$(window).scrollTop(position);
 		});
 	}
-
+	
+	//Determines which load function to use
 	function filter(post) {
 		switch (post.service_name) {
 		case ("Manual"):
@@ -50,13 +52,15 @@ $(document).ready(function () {
 			break;
 		}
 	}
-
+	
+	//Checks if the post type matches the filter
 	function filterSpecific(post) {
 		if (post.service_name === $("#cboFilter").val()) {
 			filter(post);
 		}
 	}
-
+	
+	//Loads manual posts and appends them to the grid
 	function loadManual(post) {
 		var postManual = "\
                     <div class=\"grid-item\">\
@@ -73,7 +77,8 @@ $(document).ready(function () {
                     ";
 		$(".grid").append(postManual);
 	}
-
+	
+	//Loads twitter posts and appends them to the grid
 	function loadTwitter(post) {
 		var postTwitter = "\
                     <div class=\"grid-item\">\
@@ -91,7 +96,8 @@ $(document).ready(function () {
                     </div>";
 		$(".grid").append(postTwitter);
 	}
-
+	
+	//Loads instagram posts and appends them to the grid
 	function loadInstagram(post) {
 		var postInstagram = "\
 					<div class=\"grid-item\">\
@@ -106,9 +112,11 @@ $(document).ready(function () {
 					</div>";
 		$(".grid").append(postInstagram);
 	}
-
+	
+	//Call the load posts function on document load
 	loadPosts();
-
+	
+	//Detects a change in the filter, removes current content and reloads
 	$("#cboFilter").change(function () {
 		position = 0;
 		var $grid = $('.grid');
@@ -125,7 +133,8 @@ $(document).ready(function () {
 		});
 
 	});
-
+	
+	//Detects if "Load more..." is clicked, saves the current position for reload, and rebuilds the grid
 	$("#loadmore a").click(function (e) {
 		e.preventDefault();
 		position = $(window).scrollTop();
@@ -140,8 +149,9 @@ $(document).ready(function () {
 			loadPosts();
 		});
 	});
-
-	function linkify() {
+	
+	//Uses the linky plugin to convert all the urls, #'s and @'s to links
+	function linky() {
 		$(".twittertext").linky({
 			mentions: true,
 			hashtags: true,
